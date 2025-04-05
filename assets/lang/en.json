@@ -1,7 +1,23 @@
 {
   "onboading_screen": {
       "select_language": "Select Your Language",
-      "continue": "Continue"
-  }
+      "continue": "Continue",
 
+    "onboarding1": {
+    "title": "Welcome to\nFertiScan",
+    "description": "Easily detect rice leaf color\nand get accurate fertilizer\nrecommendations using the\nLCC chart.",
+    "next": "Next"
+  },
+  "onboarding2": {
+    "title": "Scan Your Leaf",
+    "description": "Capture an image of your rice leaf, and we will compare it with the LCC chart.",
+    "next": "Next"
+  },
+  "onboarding3": {
+    "title": "Receive Fertilizer Guidance",
+    "description": "Get instant fertilizer recommendations based on leaf color analysis. Optimize your rice growth!",
+    "next": "Get Start"
+  }
+  
+  }
 }
