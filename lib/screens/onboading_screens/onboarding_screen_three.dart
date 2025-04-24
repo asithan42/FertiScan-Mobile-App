@@ -1,12 +1,12 @@
+import 'package:fertiscanapp/widgets/name_required_message_box.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../constant/colors.dart';
-import 'onboarding_screen_three.dart';
+import '../../constant/colors.dart';
 
-class OnboardingScreenTwo extends StatelessWidget {
-  const OnboardingScreenTwo({super.key});
+class OnboardingScreenThree extends StatelessWidget {
+  const OnboardingScreenThree({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,24 +21,24 @@ class OnboardingScreenTwo extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
                   Text(
-                          'onboading_screen.onboarding2.title'.tr,
+                    'onboading_screen.onboarding3.title'.tr,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.montserrat(
                       textStyle: const TextStyle(
                         color: kGreenColor1,
-                        fontSize: 30,
+                        fontSize: 28,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
                   const SizedBox(height: 30),
                   Image.asset(
-                    'assets/images/onboading_image2.png',
+                    'assets/images/onboading_image3.png',
                     height: 250,
                   ),
                   const SizedBox(height: 30),
                   Text(
-                       'onboading_screen.onboarding2.description'.tr,
+                    'onboading_screen.onboarding3.description'.tr,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.montserrat(
                       textStyle: const TextStyle(
@@ -56,14 +56,14 @@ class OnboardingScreenTwo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildDot(),
-                      _buildDot(isActive: true),
                       _buildDot(),
+                      _buildDot(isActive: true),
                     ],
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      Get.to(() => const OnboardingScreenThree());
+                      NameInputDialog.show(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: kGreenColor2,
@@ -76,7 +76,7 @@ class OnboardingScreenTwo extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                     'onboading_screen.onboarding2.next'.tr,
+                      'onboading_screen.onboarding2.next'.tr,
                       style: GoogleFonts.montserrat(
                         textStyle: const TextStyle(
                           color: kWhiteColor,

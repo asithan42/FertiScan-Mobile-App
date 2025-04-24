@@ -1,5 +1,5 @@
 import 'package:fertiscanapp/constant/colors.dart';
-import 'package:fertiscanapp/screens/onboarding_screen_one.dart';
+import 'package:fertiscanapp/screens/onboading_screens/onboarding_screen_one.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

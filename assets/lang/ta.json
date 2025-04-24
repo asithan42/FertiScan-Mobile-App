@@ -20,6 +20,23 @@
          "description": "இலை நிற பகுப்பாய்வின் அடிப்படையில் உடனடி உர பரிந்துரைகளைப் பெறுங்கள். உங்கள் நெல் வளர்ச்சியை மேம்படுத்துங்கள்!",
          "next": "தொடங்கு"
        }
+    },
+    
+"greetings": {
+        "morning": "காலை வணக்கம்",
+        "afternoon": "மதிய வணக்கம்",
+        "evening": "மாலை வணக்கம்",
+        "night": "இரவு வணக்கம்"
+      },
+
+"hamburger_menu":{
+        "dear": "Dear",
+        "hi": "Hi",
+        "change_lang": "Change Language",
+        "change_name": "உங்கள் பெயரை மாற்றவும்",
+        "user_guide": "Guide for App"
+      }
+     
     }
+    
   
-  }

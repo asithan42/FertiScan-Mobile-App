@@ -18,6 +18,22 @@
     "description": "Get instant fertilizer recommendations based on leaf color analysis. Optimize your rice growth!",
     "next": "Get Start"
   }
-  
-  }
+},
+
+"greetings": {
+    "morning": "Good Morning",
+    "afternoon": "Good Afternoon",
+    "evening": "Good Evening",
+    "night": "Good Night"
+    },
+
+"hamburger_menu":{
+  "dear": "Dear",
+  "hi": "Hi",
+  "change_lang": "Change Language",
+  "change_name": "Change Your Name",
+  "user_guide": "Guide for App"
 }
+ 
+  }
+
