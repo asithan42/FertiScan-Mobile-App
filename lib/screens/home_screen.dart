@@ -1,11 +1,8 @@
-import 'package:fertiscanapp/screens/Scan_Lcc_Chart_Screen.dart';
+import 'package:fertiscanapp/util/capture_progress.dart';
 import 'package:fertiscanapp/util/greeting_widget.dart';
+import 'package:fertiscanapp/widgets/hamburger_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../constant/colors.dart';
-import '../widgets/hamburger_menu.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,12 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Instruction Text
                   Center(
                     child: Text(
-                      'Take 05 Photos to get\nfertilizer recommendation',
+                      'check 05 randomly selected rice plants per field to get\nfertilizer recommendation',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
                         fontSize: 16,
                         color: Colors.black87,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
@@ -79,62 +76,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Photo count button (disabled style)
+                  // Capture progress widget
                   Center(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 30,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(30),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black26,
-                            blurRadius: 4,
-                            offset: Offset(2, 4),
-                          ),
-                        ],
-                      ),
-                      child: Text(
-                        'Take Photo  0/5',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 30),
-
-                  // Take Photo Button
-                  Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: kGreenColor2,
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 14,
-                          horizontal: 40,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        elevation: 6,
-                      ),
-                      onPressed: () {
-                        Get.to(
-                          () => ScanLccCameraScreen(),
-                        ); // Navigate to scanning screen
+                    child: CaptureProgressWidget(
+                      onHistoryUpdated: () {
+                        // This will force the hamburger menu to reload history when shown
+                        setState(() {});
                       },
-                      child: Text(
-                        'Take Photo',
-                        style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
                     ),
                   ),
                 ],

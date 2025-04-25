@@ -1,3 +1,5 @@
+import 'package:fertiscanapp/models/fertilizer_session.dart';
+import 'package:fertiscanapp/screens/history_screen.dart';
 import 'package:fertiscanapp/screens/photo_take_instruction.dart';
 import 'package:fertiscanapp/widgets/name_required_message_box.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,21 @@ class HamburgerMenu extends StatefulWidget {
 
 class _HamburgerMenuState extends State<HamburgerMenu> {
   bool _showLanguages = false;
-  final storage = GetStorage(); // Initialize storage
+  final storage = GetStorage();
+  List<FertilizerSession> _historySessions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadHistory();
+  }
+
+  void _loadHistory() {
+    final sessions = storage.read<List>('fertilizerSessions') ?? [];
+    _historySessions =
+        sessions.map((e) => FertilizerSession.fromMap(e)).toList();
+    setState(() {});
+  }
 
   // Get greeting message based on the current time
   String _getUserName() {
@@ -106,7 +122,6 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
             SizedBox(height: 10),
             TextButton.icon(
               onPressed: () {
-              
                 NameInputDialog.show(context, initialName: _getUserName());
               },
               icon: const Icon(Icons.person, color: kBlackColor),
@@ -126,6 +141,23 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
               icon: const Icon(Icons.menu_book, color: kBlackColor),
               label: Text(
                 'hamburger_menu.user_guide'.tr,
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w600,
+                  color: kGreenColor1,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+            // Add new history button
+            TextButton.icon(
+              onPressed: () {
+                Get.to(() => HistoryScreen());
+                widget.onClose?.call();
+              },
+              icon: const Icon(Icons.history, color: kBlackColor),
+              label: Text(
+                'Recommendation History',
                 style: GoogleFonts.montserrat(
                   fontWeight: FontWeight.w600,
                   color: kGreenColor1,

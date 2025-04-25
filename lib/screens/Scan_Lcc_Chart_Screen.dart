@@ -1,24 +1,23 @@
+
 import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:fertiscanapp/constant/colors.dart';
-import 'package:fertiscanapp/screens/home_screen.dart';
 import 'package:fertiscanapp/services/upload_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:path_provider/path_provider.dart';
 
-class ScanLccCameraScreen extends StatefulWidget {
-  const ScanLccCameraScreen({super.key});
+class ScanRiceLeafScreen extends StatefulWidget {
+  const ScanRiceLeafScreen({super.key});
 
   @override
-  State<ScanLccCameraScreen> createState() => _ScanLccCameraScreenState();
+  State<ScanRiceLeafScreen> createState() => _ScanRiceLeafScreenState();
 }
 
-class _ScanLccCameraScreenState extends State<ScanLccCameraScreen> {
+class _ScanRiceLeafScreenState extends State<ScanRiceLeafScreen> {
   CameraController? _cameraController;
   late List<CameraDescription> _cameras;
   bool _isCameraInitialized = false;
@@ -55,27 +54,6 @@ class _ScanLccCameraScreenState extends State<ScanLccCameraScreen> {
     }
   }
 
-  //   Future<void> _takePhoto() async {
-  //     if (!_cameraController!.value.isInitialized) return;
-
-  //     // Delete the previous image if it exists
-  //     if (_capturedImage != null && await _capturedImage!.exists()) {
-  //       await _capturedImage!.delete();
-  //     }
-
-  //     final XFile file = await _cameraController!.takePicture();
-  //     final Directory appDir = await getApplicationDocumentsDirectory();
-  //     final String imagePath =
-  //         '${appDir.path}/leaf_image_${DateTime.now().millisecondsSinceEpoch}.jpg';
-
-  //     final File savedImage = await File(file.path).copy(imagePath);
-
-  //     setState(() {
-  //       _capturedImage = savedImage;
-  //       _showPreview = true;
-  //     });
-  //   }
-
   Future<void> _takePhoto() async {
     if (!_cameraController!.value.isInitialized) return;
 
@@ -98,7 +76,7 @@ class _ScanLccCameraScreenState extends State<ScanLccCameraScreen> {
 
       uiSettings: [
         AndroidUiSettings(
-          toolbarTitle: 'Adjust the LCC chart Area',
+          toolbarTitle: 'Adjust the rice leaf Area',
           toolbarColor: Colors.green,
           toolbarWidgetColor: Colors.white,
           initAspectRatio: CropAspectRatioPreset.original,
@@ -107,7 +85,7 @@ class _ScanLccCameraScreenState extends State<ScanLccCameraScreen> {
           showCropGrid: true,
         ),
         IOSUiSettings(
-          title: 'Crop LCC Chart',
+          title: 'Crop rice leaf',
           aspectRatioLockEnabled: true,
           rotateButtonsHidden: true,
           rotateClockwiseButtonHidden: true,
@@ -135,7 +113,7 @@ class _ScanLccCameraScreenState extends State<ScanLccCameraScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Scan LCC Chart',
+          'Scan rice leaf',
           style: GoogleFonts.montserrat(
             textStyle: const TextStyle(
               fontSize: 20,
@@ -209,37 +187,16 @@ class _ScanLccCameraScreenState extends State<ScanLccCameraScreen> {
                           ElevatedButton(
                             onPressed: () async {
                               final uploadService = UploadService();
-                              final uploadedFileName = await uploadService
+                              final result = await uploadService
                                   .uploadLeafImage(_capturedImage!);
-
-                              if (uploadedFileName != null) {
-                                print('Image uploaded as $uploadedFileName');
-
-                                // Mark LCC upload as complete
-                                storage.write('isUploadedLccChart', true);
-
-                                // Optional: delete image after upload
-                                if (_capturedImage != null &&
-                                    await _capturedImage!.exists()) {
-                                  await _capturedImage!.delete();
-                                }
-
-                                Get.offAll(() => HomeScreen());
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Failed to upload image'),
-                                  ),
-                                );
+                              if (result != null) {
+                                Navigator.pop(
+                                  context,
+                                  result,
+                                ); // Return the result
                               }
                             },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.green[700],
-                            ),
-                            child: const Text(
-                              'Done',
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            child: const Text('Done'),
                           ),
                         ],
                       ),
@@ -301,7 +258,7 @@ class _ScanLccCameraScreenState extends State<ScanLccCameraScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Please align the LCC chart within the frame',
+                          'Please align the leaf within the frame',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.montserrat(
                             textStyle: const TextStyle(
