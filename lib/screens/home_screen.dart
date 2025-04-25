@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Center(
                     child: CaptureProgressWidget(
                       onHistoryUpdated: () {
-                        // This will force the hamburger menu to reload history when shown
+                        // This will force the history screen to reload if it's open
                         setState(() {});
                       },
                     ),

@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class CaptureProgressWidget extends StatefulWidget {
-  final VoidCallback? onHistoryUpdated;
+  final VoidCallback onHistoryUpdated;
 
-  const CaptureProgressWidget({super.key, this.onHistoryUpdated});
+  const CaptureProgressWidget({super.key, required this.onHistoryUpdated});
 
   @override
   State<CaptureProgressWidget> createState() => _CaptureProgressWidgetState();
@@ -17,31 +17,7 @@ class CaptureProgressWidget extends StatefulWidget {
 class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
   int _photosTaken = 0;
   final List<String> _sessionResults = [];
-  final List<FertilizerSession> _historySessions = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _loadHistory();
-  }
-
-  void _loadHistory() async {
-    final box = GetStorage();
-    final sessions = box.read<List>('fertilizerSessions') ?? [];
-    _historySessions.addAll(
-      sessions.map((e) => FertilizerSession.fromMap(e)).toList(),
-    );
-    setState(() {});
-  }
-
-  void _addToHistory(FertilizerSession session) {
-    _historySessions.insert(0, session);
-    final box = GetStorage();
-    box.write(
-      'fertilizerSessions',
-      _historySessions.map((e) => e.toMap()).toList(),
-    );
-  }
+  final GetStorage _storage = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -80,17 +56,19 @@ class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
     final average = _calculateAverageResult(_sessionResults);
     final recommendation = _getRecommendationDetails(average);
 
-    _addToHistory(
+    final sessions = _storage.read<List>('fertilizerSessions') ?? [];
+    final updatedSessions = [
       FertilizerSession(
         date: DateTime.now(),
         averageResult: average,
         individualResults: List.from(_sessionResults),
-        recommendation: recommendation['title'], // Store recommendation text
-      ),
-    );
+        recommendation: recommendation['title'],
+      ).toMap(),
+      ...sessions,
+    ];
 
-    // Notify parent about history update via callback
-    widget.onHistoryUpdated?.call();
+    _storage.write('fertilizerSessions', updatedSessions);
+    widget.onHistoryUpdated(); // Notify parent to refresh
 
     Get.offAll(
       () => RecommendationScreen(

@@ -14,81 +14,79 @@ class OnboardingScreenThree extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  const SizedBox(height: 20),
-                  Text(
-                    'onboading_screen.onboarding3.title'.tr,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.montserrat(
-                      textStyle: const TextStyle(
-                        color: kGreenColor1,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w700,
-                      ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const SizedBox(height: 20),
+                Text(
+                  'onboading_screen.onboarding3.title'.tr,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.montserrat(
+                    textStyle: const TextStyle(
+                      color: kGreenColor1,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                  const SizedBox(height: 30),
-                  Image.asset(
-                    'assets/images/onboading_image3.png',
-                    height: 250,
-                  ),
-                  const SizedBox(height: 30),
-                  Text(
-                    'onboading_screen.onboarding3.description'.tr,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.montserrat(
-                      textStyle: const TextStyle(
-                        color: kBlackColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
+                ),
+                const SizedBox(height: 30),
+                Image.asset(
+                  'assets/images/onboading_image3.png',
+                  height: 250,
+                ),
+                const SizedBox(height: 30),
+                Text(
+                  'onboading_screen.onboarding3.description'.tr,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.montserrat(
+                    textStyle: const TextStyle(
+                      color: kBlackColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      _buildDot(),
-                      _buildDot(),
-                      _buildDot(isActive: true),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      NameInputDialog.show(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kGreenColor2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 14,
-                      ),
+                ),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _buildDot(),
+                        _buildDot(),
+                        _buildDot(isActive: true),
+                      ],
                     ),
-                    child: Text(
-                      'onboading_screen.onboarding2.next'.tr,
-                      style: GoogleFonts.montserrat(
-                        textStyle: const TextStyle(
-                          color: kWhiteColor,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        NameInputDialog.show(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kGreenColor2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 40,
+                          vertical: 14,
+                        ),
+                      ),
+                      child: Text(
+                        'onboading_screen.onboarding2.next'.tr,
+                        style: GoogleFonts.montserrat(
+                          textStyle: const TextStyle(
+                            color: kWhiteColor,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
