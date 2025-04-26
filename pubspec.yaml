@@ -37,6 +37,14 @@ dependencies:
   get: ^4.7.2
   get_storage: ^2.1.1
   google_fonts: ^6.2.1
+  camera: ^0.11.1
+  path_provider: ^2.1.5
+  permission_handler: ^12.0.0
+  dio: ^5.8.0+1
+  image_cropper: ^9.1.0
+  awesome_dialog: ^3.2.1
+  intl: ^0.20.2
+  
 
 dev_dependencies:
   flutter_test:
@@ -62,10 +70,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/lang/en.json
-    - assets/lang/si.json
-    - assets/lang/ta.json
-    - assets/images/language_screen_image.png
+    - assets/lang/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,7 +1,9 @@
-import 'package:fertiscanapp/screens/onboarding_screen_1.dart';
+import 'package:fertiscanapp/constant/colors.dart';
+import 'package:fertiscanapp/screens/onboading_screens/onboarding_screen_one.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/language_controller.dart';
 
@@ -33,12 +35,15 @@ class LanguageSelectionScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   Text(
                     'FertiScan',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.green[800],
+                    style: GoogleFonts.oregano(
+                      textStyle: const TextStyle(
+                        color: kGreenColor2,
+                        fontSize: 60,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
+
                   const SizedBox(height: 50),
                   Image.asset(
                     'assets/images/language_screen_image.png',
@@ -47,7 +52,14 @@ class LanguageSelectionScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   Text(
                     'onboading_screen.select_language'.tr,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.montserrat(
+                      textStyle: const TextStyle(
+                        color: kGreenColor1,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 20),
 
@@ -71,11 +83,12 @@ class LanguageSelectionScreen extends StatelessWidget {
                               child: ChoiceChip(
                                 label: Text(displayName),
                                 selected: isSelected,
-                                selectedColor: Colors.green[700],
-                                backgroundColor: Colors.green[100],
+                                checkmarkColor:
+                                    isSelected ? kWhiteColor : kGreyColor1,
+                                selectedColor: const Color(0xFF862510),
+                                backgroundColor: kGreenColor1,
                                 labelStyle: TextStyle(
-                                  color:
-                                      isSelected ? Colors.white : Colors.black,
+                                  color: isSelected ? kWhiteColor : kWhiteColor,
                                 ),
                                 onSelected: (_) {
                                   controller.changeLanguage(
@@ -94,7 +107,7 @@ class LanguageSelectionScreen extends StatelessWidget {
               // Continue Button
               ElevatedButton(
                 onPressed: () {
-                  Get.to(() => OnboardingScreen1());
+                  Get.to(() => OnboardingScreenOne());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
@@ -108,7 +121,13 @@ class LanguageSelectionScreen extends StatelessWidget {
                 ),
                 child: Text(
                   'onboading_screen.continue'.tr,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.montserrat(
+                    textStyle: const TextStyle(
+                      color: kWhiteColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ),
               ),
             ],
