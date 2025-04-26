@@ -1,9 +1,11 @@
+import 'package:fertiscanapp/constant/colors.dart';
 import 'package:fertiscanapp/models/fertilizer_session.dart';
-import 'package:fertiscanapp/screens/Scan_Lcc_Chart_Screen.dart';
 import 'package:fertiscanapp/screens/reccomendation_screen.dart';
+import 'package:fertiscanapp/screens/scan_rice_leaf_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CaptureProgressWidget extends StatefulWidget {
   final VoidCallback onHistoryUpdated;
@@ -40,13 +42,18 @@ class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
           },
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+            backgroundColor: kGreenColor2,
           ),
           child: Text(
             _photosTaken == 0
                 ? 'Start Capture'
                 : 'Capture Next ($_photosTaken/5)',
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: kWhiteColor,
+                ),
+              ),
         ),
       ],
     );

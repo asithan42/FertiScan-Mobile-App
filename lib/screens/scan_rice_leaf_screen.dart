@@ -1,10 +1,11 @@
-
+import 'dart:async';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:fertiscanapp/constant/colors.dart';
 import 'package:fertiscanapp/services/upload_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -25,12 +26,15 @@ class _ScanRiceLeafScreenState extends State<ScanRiceLeafScreen> {
   final storage = GetStorage();
   File? _capturedImage;
   bool _showPreview = false;
+  bool _isUploading = false;
 
   @override
   void initState() {
     super.initState();
     _initCamera();
   }
+
+  
 
   Future<void> _initCamera() async {
     _cameras = await availableCameras();
@@ -98,6 +102,63 @@ class _ScanRiceLeafScreenState extends State<ScanRiceLeafScreen> {
       setState(() {
         _capturedImage = File(croppedFile.path);
         _showPreview = true;
+      });
+    }
+  }
+
+
+// This function handles the image upload process
+  Future<void> _handleImageUpload() async {
+    if (_capturedImage == null) return;
+
+    setState(() {
+      _isUploading = true;
+    });
+
+    try {
+      final uploadService = UploadService();
+      final result = await uploadService
+          .uploadLeafImage(_capturedImage!)
+          .timeout(const Duration(seconds: 10)); // Add timeout
+
+      if (result != null) {
+        Navigator.pop(context, result);
+      } else {
+        Get.snackbar(
+          'Upload Failed',
+          'No response from server',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      }
+    } on SocketException catch (_) {
+      Get.snackbar(
+        'Connection Error',
+        'Please check your internet connection',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } on TimeoutException catch (_) {
+      Get.snackbar(
+        'Timeout Error',
+        'Server took too long to respond',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Upload Error',
+        'Failed to upload image: ${e.toString()}',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } finally {
+      setState(() {
+        _isUploading = false;
       });
     }
   }
@@ -185,18 +246,18 @@ class _ScanRiceLeafScreenState extends State<ScanRiceLeafScreen> {
                             ),
                           ),
                           ElevatedButton(
-                            onPressed: () async {
-                              final uploadService = UploadService();
-                              final result = await uploadService
-                                  .uploadLeafImage(_capturedImage!);
-                              if (result != null) {
-                                Navigator.pop(
-                                  context,
-                                  result,
-                                ); // Return the result
-                              }
-                            },
-                            child: const Text('Done'),
+                            onPressed: _isUploading ? null : _handleImageUpload,
+                            child:
+                                _isUploading
+                                    ? const SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                    : const Text('Done'),
                           ),
                         ],
                       ),
@@ -299,4 +360,5 @@ class _ScanRiceLeafScreenState extends State<ScanRiceLeafScreen> {
               : const Center(child: CircularProgressIndicator()),
     );
   }
+  
 }
