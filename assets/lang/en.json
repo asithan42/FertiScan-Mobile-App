@@ -20,6 +20,16 @@
   }
 },
 
+    
+  "name_input": {
+    "title": "Dear Farmer, please enter your first or last name",
+    "hint": "Nimal",
+    "error_required": "Name is required",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+
+
 "greetings": {
     "morning": "Good Morning",
     "afternoon": "Good Afternoon",
@@ -29,11 +39,107 @@
 
 "hamburger_menu":{
   "dear": "Dear",
+  "farmer": "Farmer",
   "hi": "Hi",
   "change_lang": "Change Language",
   "change_name": "Change Your Name",
-  "user_guide": "Guide for App"
-}
- 
+  "user_guide": "Guide for App",
+  "recommendation_history": "Recommendation History"
+},
+"user_guide_screen": {
+    "instruction_title": "Instructions for taking rice leaf image",
+    "instruction_1": "Place a white paper under the rice leaf for better contrast.",
+    "instruction_2": "Take a clear photo with the leaf fully visible.",
+    "instruction_3": "Use natural light and avoid shadows or direct flash.",
+    "instruction_4": "Capture the image in good lighting, preferably outdoors.",
+    "done_button": "Done"
+  },
+  "home_screen": {
+    "instruction_text": "Check 05 randomly selected rice plants per field to get\nfertilizer recommendation"
+  },
+  "capture_widget": {
+    "start_button": "Start Capture",
+    "capture_next_button": "Capture Next (@count/5)",
+    "swap1": "SWAP 1 - Very Deficient (50-60 kg/ha urea)",
+    "swap2": "SWAP 2 - Deficient (40-50 kg/ha urea)",
+    "swap3": "SWAP 3 - Adequate (30-40 kg/ha urea)",
+    "swap4": "SWAP 4 - Sufficient/Excess (Skip urea)",
+    "unknown": "Unknown Result"
+  },
+  
+    "scan_screen": {
+      "title": "Scan rice leaf",
+      "toolbar_crop": "Adjust the rice leaf Area",
+      "crop_title": "Crop rice leaf",
+      "align_instruction": "Please align the leaf within the frame",
+      "retake_prompt": "Is this image clear and not cropped any part?\\nIf not, please retake the photo.",
+      "retake_button": "Retake Photo",
+      "done_button": "Done",
+      "take_photo_button": "Take Photo",
+      "upload_failed": "Upload Failed",
+      "upload_no_response": "No response from server",
+      "connection_error": "Connection Error",
+      "check_connection": "Please check your internet connection",
+      "timeout_error": "Timeout Error",
+      "timeout_response": "Server took too long to respond",
+      "upload_error": "Upload Error",
+      "upload_failed_msg": "Failed to upload image: "
+    },
+    "recommendation_screen": {
+  "title": "Fertilizer\nRecommendation",
+  "urea_label": "Urea",
+  "action_label": "Action",
+  "go_home_button": "Go to Home",
+  "swap1": {
+    "desc": "🌾 Very Deficient",
+    "urea": "Apply 50–60 kg/ha",
+    "action": "Apply Now!"
+  },
+  "swap2": {
+    "desc": "🍃 Deficient",
+    "urea": "Apply 40–50 kg/ha",
+    "action": "Apply Soon"
+  },
+  "swap3": {
+    "desc": "✅ Adequate",
+    "urea": "Apply 30–40 kg/ha if needed",
+    "action": "Optional"
+  },
+  "swap4": {
+    "desc": "🌳 Very Healthy",
+    "urea": "No Urea Needed",
+    "action": "Skip Application"
+  },
+  "unknown": {
+    "desc": "❓ Unknown",
+    "urea": "-",
+    "action": "Consult expert"
   }
+},
+
+  "history_screen": {
+    "title": "Recommendation History",
+    "no_history": "No history available",
+    "selected_count": "@count Selected",
+    "tooltip_delete_selected": "Delete Selected",
+    "tooltip_cancel_selection": "Cancel Selection",
+    "delete_selected_title": "Delete Recommendations",
+    "delete_selected_content": "Delete @count selected recommendation(s)?",
+    "delete_single_title": "Delete Recommendation",
+    "delete_single_content": "Delete this recommendation?",
+    "urea_needed": "Needed Urea amount: @urea",
+    "swap1": "Apply 50-60 kg/ha",
+    "swap2": "Apply 40-50 kg/ha",
+    "swap3": "Apply 30-40 kg/ha",
+    "swap4": "No need to apply. 0 kg/ha"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete"
+  }
+}
+
+
+  
+  
 

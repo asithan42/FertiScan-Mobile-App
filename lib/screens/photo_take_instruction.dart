@@ -28,7 +28,7 @@ class _PhotoTakeInstructionState extends State<PhotoTakeInstruction> {
                   Column(
                     children: [
                       Text(
-                        'Instructions for taking LCC chart image',
+                        'user_guide_screen.instruction_title'.tr,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.montserrat(
                           textStyle: const TextStyle(
@@ -53,23 +53,19 @@ class _PhotoTakeInstructionState extends State<PhotoTakeInstruction> {
                         children: const [
                           InstructionPoint(
                             icon: "📄",
-                            text:
-                                "Place a white paper under the rice leaf for better contrast.",
+                            textKey: "user_guide_screen.instruction_1",
                           ),
                           InstructionPoint(
                             icon: "📷",
-                            text:
-                                "Take a clear photo with the leaf fully visible.",
+                            textKey: "user_guide_screen.instruction_2",
                           ),
                           InstructionPoint(
                             icon: "🌟",
-                            text:
-                                "Use natural light and avoid shadows or direct flash.",
+                            textKey: "user_guide_screen.instruction_3",
                           ),
                           InstructionPoint(
                             icon: "✨",
-                            text:
-                                "Capture the image in good lighting, preferably outdoors.",
+                            textKey: "user_guide_screen.instruction_4",
                           ),
                         ],
                       ),
@@ -77,8 +73,7 @@ class _PhotoTakeInstructionState extends State<PhotoTakeInstruction> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Navigate to scanning screen
-                      Get.to(() => HomeScreen());
+                      Get.to(() => const HomeScreen());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: kGreenColor2,
@@ -91,7 +86,7 @@ class _PhotoTakeInstructionState extends State<PhotoTakeInstruction> {
                       ),
                     ),
                     child: Text(
-                      'Done',
+                      'user_guide_screen.done_button'.tr,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.montserrat(
                         textStyle: const TextStyle(
@@ -114,9 +109,13 @@ class _PhotoTakeInstructionState extends State<PhotoTakeInstruction> {
 
 class InstructionPoint extends StatelessWidget {
   final String icon;
-  final String text;
+  final String textKey;
 
-  const InstructionPoint({super.key, required this.icon, required this.text});
+  const InstructionPoint({
+    super.key,
+    required this.icon,
+    required this.textKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +128,7 @@ class InstructionPoint extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              text,
+              textKey.tr,
               style: GoogleFonts.montserrat(
                 textStyle: const TextStyle(
                   fontSize: 15,

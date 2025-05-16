@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart'; // Add GetX import
 import 'package:get_storage/get_storage.dart'; // For persistent storage
 import 'package:google_fonts/google_fonts.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../constant/colors.dart';
 
@@ -22,11 +23,20 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
   bool _showLanguages = false;
   final storage = GetStorage();
   List<FertilizerSession> _historySessions = [];
-
+  String? _appVersion;
   @override
   void initState() {
     super.initState();
     _loadHistory();
+    _loadAppVersion();
+  }
+
+  // Load app version using PackageInfo
+  void _loadAppVersion() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _appVersion = 'Version ${info.version}';
+    });
   }
 
   void _loadHistory() {
@@ -157,7 +167,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
               },
               icon: const Icon(Icons.history, color: kBlackColor),
               label: Text(
-                'Recommendation History',
+                'hamburger_menu.recommendation_history'.tr,
                 style: GoogleFonts.montserrat(
                   fontWeight: FontWeight.w600,
                   color: kGreenColor1,
@@ -166,7 +176,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
             ),
             const SizedBox(height: 10),
             Text(
-              'Version 1.0',
+              _appVersion ?? 'Loading...',
               style: GoogleFonts.montserrat(
                 fontSize: 12,
                 color: Colors.grey[700],
