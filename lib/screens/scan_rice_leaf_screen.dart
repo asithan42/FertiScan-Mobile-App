@@ -90,17 +90,39 @@ class ScanRiceLeafScreen extends StatelessWidget {
               },
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: Colors.red),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
               ),
               child: Text(
                 'scan_screen.retake_button'.tr,
-                style: const TextStyle(color: Colors.red),
+                style: const TextStyle(
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
             ),
+
             ElevatedButton(
               onPressed:
                   controller.isUploading
                       ? null
                       : () => controller.handleImageUpload(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green[700],
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
               child:
                   controller.isUploading
                       ? const SizedBox(
@@ -111,7 +133,14 @@ class ScanRiceLeafScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       )
-                      : Text('scan_screen.done_button'.tr),
+                      : Text(
+                        'scan_screen.done_button'.tr,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
             ),
           ],
         ),
