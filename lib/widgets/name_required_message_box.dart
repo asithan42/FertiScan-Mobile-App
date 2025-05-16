@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../constant/colors.dart';
-import '../screens/home_screen.dart'; // <- Update to your actual path
+import '../screens/home_screen.dart'; // <- Update this if needed
 
 class NameInputDialog {
   static Future<void> show(BuildContext context, {String initialName = ''}) async {
@@ -31,11 +31,8 @@ class NameInputDialog {
       body: _DialogBody(
         controller: nameController,
         onSubmit: (value) {
-          // Save to storage
           box.write('userName', value);
-          //save isregisted
           box.write('isRegistered', true);
-          // Navigate to home screen
           Get.offAll(() => const HomeScreen());
           completer.complete();
         },
@@ -79,13 +76,13 @@ class _DialogBodyState extends State<_DialogBody> {
       child: Column(
         children: [
           Text(
+            "name_input.title".tr,
             textAlign: TextAlign.center,
-            "Dear Farmer, please enter your first or last name",
             style: GoogleFonts.montserrat(
               textStyle: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
-                color:kGreenColor1,
+                color: kGreenColor1,
               ),
             ),
           ),
@@ -94,7 +91,7 @@ class _DialogBodyState extends State<_DialogBody> {
             controller: widget.controller,
             maxLength: 15,
             decoration: InputDecoration(
-              hintText: "Nimal",
+              hintText: "name_input.hint".tr,
               hintStyle: GoogleFonts.montserrat(
                 textStyle: const TextStyle(
                   color: kGreyColor2,
@@ -103,7 +100,7 @@ class _DialogBodyState extends State<_DialogBody> {
                 ),
               ),
               counterText: '',
-              errorText: isNameEmpty ? "Name is required" : null,
+              errorText: isNameEmpty ? "name_input.error_required".tr : null,
               errorStyle: GoogleFonts.montserrat(
                 textStyle: const TextStyle(
                   color: Colors.redAccent,
@@ -141,7 +138,7 @@ class _DialogBodyState extends State<_DialogBody> {
                   ),
                 ),
                 child: Text(
-                  "Cancel",
+                  "name_input.cancel".tr,
                   style: GoogleFonts.montserrat(
                     textStyle: const TextStyle(
                       fontWeight: FontWeight.w600,
@@ -160,7 +157,7 @@ class _DialogBodyState extends State<_DialogBody> {
                   ),
                 ),
                 child: Text(
-                  "Submit",
+                  "name_input.submit".tr,
                   style: GoogleFonts.montserrat(
                     textStyle: const TextStyle(
                       fontWeight: FontWeight.w600,

@@ -46,14 +46,15 @@ class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
           ),
           child: Text(
             _photosTaken == 0
-                ? 'Start Capture'
-                : 'Capture Next ($_photosTaken/5)',
-                style: GoogleFonts.montserrat(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: kWhiteColor,
-                ),
-              ),
+                ? 'capture_widget.start_button'.tr
+                : 'capture_widget.capture_next_button'
+                    .trParams({'count': _photosTaken.toString()}),
+            style: GoogleFonts.montserrat(
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              color: kWhiteColor,
+            ),
+          ),
         ),
       ],
     );
@@ -69,20 +70,18 @@ class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
         date: DateTime.now(),
         averageResult: average,
         individualResults: List.from(_sessionResults),
-        recommendation: recommendation['title'],
+        recommendation: recommendation,
       ).toMap(),
       ...sessions,
     ];
 
     _storage.write('fertilizerSessions', updatedSessions);
-    widget.onHistoryUpdated(); // Notify parent to refresh
+    widget.onHistoryUpdated();
 
-    Get.offAll(
-      () => RecommendationScreen(
-        averageResult: average,
-        individualResults: _sessionResults,
-      ),
-    );
+    Get.offAll(() => RecommendationScreen(
+          averageResult: average,
+          individualResults: _sessionResults,
+        ));
 
     setState(() {
       _photosTaken = 0;
@@ -98,18 +97,18 @@ class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
     return counts.entries.reduce((a, b) => a.value > b.value ? a : b).key;
   }
 
-  Map<String, String> _getRecommendationDetails(String swapValue) {
+  String _getRecommendationDetails(String swapValue) {
     switch (swapValue.toLowerCase()) {
       case 'swap1':
-        return {'title': 'SWAP 1 - Very Deficient (50-60 kg/ha urea)'};
+        return 'capture_widget.swap1'.tr;
       case 'swap2':
-        return {'title': 'SWAP 2 - Deficient (40-50 kg/ha urea)'};
+        return 'capture_widget.swap2'.tr;
       case 'swap3':
-        return {'title': 'SWAP 3 - Adequate (No urea needed)'};
+        return 'capture_widget.swap3'.tr;
       case 'swap4':
-        return {'title': 'SWAP 4 - Sufficient/Excess (Skip urea)'};
+        return 'capture_widget.swap4'.tr;
       default:
-        return {'title': 'Unknown Result'};
+        return 'capture_widget.unknown'.tr;
     }
   }
 }

@@ -21,6 +21,17 @@
          "next": "தொடங்கு"
        }
     },
+
+    
+  "name_input": {
+    "title": "Dear Farmer, please enter your first or last name",
+    "hint": "Nimal",
+    "error_required": "Name is required",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+
+
     
 "greetings": {
         "morning": "காலை வணக்கம்",
@@ -31,12 +42,113 @@
 
 "hamburger_menu":{
         "dear": "Dear",
+        "farmer": "Farmer",
         "hi": "Hi",
         "change_lang": "Change Language",
         "change_name": "உங்கள் பெயரை மாற்றவும்",
-        "user_guide": "Guide for App"
-      }
+        "user_guide": "பயன்பாட்டிற்கான வழிகாட்டி",
+         "recommendation_history": "உர பரிந்துரை வரலாறு"
+      },
+      "user_guide_screen": {
+          "instruction_title": "Instructions for taking rice leaf image",
+          "instruction_1": "Place a white paper under the rice leaf for better contrast.",
+          "instruction_2": "Take a clear photo with the leaf fully visible.",
+          "instruction_3": "Use natural light and avoid shadows or direct flash.",
+          "instruction_4": "Capture the image in good lighting, preferably outdoors.",
+          "done_button": "Done"
+        },
+        "home_screen": {
+          "instruction_text": "Check 05 randomly selected rice plants per field to get\nfertilizer recommendation"
+        },
+        "capture_widget": {
+          "start_button": "Start Capture",
+          "capture_next_button": "Capture Next (@count/5)",
+          "swap1": "SWAP 1 - Very Deficient (50-60 kg/ha urea)",
+          "swap2": "SWAP 2 - Deficient (40-50 kg/ha urea)",
+          "swap3": "SWAP 3 - Adequate (30-40 kg/ha urea)",
+          "swap4": "SWAP 4 - Sufficient/Excess (Skip urea)",
+          "unknown": "Unknown Result"
+        },
+        
+          "scan_screen": {
+            "title": "Scan rice leaf",
+            "toolbar_crop": "Adjust the rice leaf Area",
+            "crop_title": "Crop rice leaf",
+            "align_instruction": "Please align the leaf within the frame",
+            "retake_prompt": "Is this image clear and not cropped any part?\\nIf not, please retake the photo.",
+            "retake_button": "Retake Photo",
+            "done_button": "Done",
+            "take_photo_button": "Take Photo",
+            "upload_failed": "Upload Failed",
+            "upload_no_response": "No response from server",
+            "connection_error": "Connection Error",
+            "check_connection": "Please check your internet connection",
+            "timeout_error": "Timeout Error",
+            "timeout_response": "Server took too long to respond",
+            "upload_error": "Upload Error",
+            "upload_failed_msg": "Failed to upload image: "
+          },
+
+  "recommendation_screen": {
+          "title": "පොහොර\nයෝජනාව",
+          "urea_label": "යුරියා",
+          "action_label": "ක්‍රියාව",
+          "go_home_button": "මුල් පිටුවට යන්න",
+          "swap1": {
+            "desc": "🌾 බොහෝ අඩුවෙන්",
+            "urea": "කි.ග්‍රෑ. 50–60ක් යෙදිය යුතුය",
+            "action": "වහාම යෙදිය යුතුය!"
+          },
+          "swap2": {
+            "desc": "🍃 අඩුයි",
+            "urea": "කි.ග්‍රෑ. 40–50ක් යෙදන්න",
+            "action": "ඉක්මනින් යෙදන්න"
+          },
+          "swap3": {
+            "desc": "✅ ප්‍රමාණවත්",
+            "urea": "අවශ්‍ය නම් කි.ග්‍රෑ. 30–40ක් යෙදන්න",
+            "action": "අභිප්‍රේතයකි"
+          },
+          "swap4": {
+            "desc": "🌳 ඉතා සුවපහසුයි",
+            "urea": "යුරියා අවශ්‍ය නැත",
+            "action": "යෙදීම මගහරින්න"
+          },
+          "unknown": {
+            "desc": "❓ අනියමයි",
+            "urea": "-",
+            "action": "විශේෂඥයෙකු පරික්ෂා කරන්න"
+          },
+
+  "history_screen": {
+    "title": "Recommendation History",
+    "no_history": "No history available",
+    "selected_count": "@count Selected",
+    "tooltip_delete_selected": "Delete Selected",
+    "tooltip_cancel_selection": "Cancel Selection",
+    "delete_selected_title": "Delete Recommendations",
+    "delete_selected_content": "Delete @count selected recommendation(s)?",
+    "delete_single_title": "Delete Recommendation",
+    "delete_single_content": "Delete this recommendation?",
+    "urea_needed": "Needed Urea amount: @urea",
+    "swap1": "Apply 50-60 kg/ha",
+    "swap2": "Apply 40-50 kg/ha",
+    "swap3": "Apply 30-40 kg/ha",
+    "swap4": "No need to apply. 0 kg/ha"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete"
+  }
+}
+
+
+  
+  
+
+
+}
      
-    }
+    
     
   
