@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 import 'screens/language_selection_screen.dart';
 
-// This is main file of the app
+// This is main file of the file
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
