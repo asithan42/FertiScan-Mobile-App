@@ -20,6 +20,7 @@ class UploadService {
       });
 
       Response response = await _dio.post(url, data: formData);
+      print('Upload response: ${response.statusCode}');
 
       if (response.statusCode == 200) {
         return response

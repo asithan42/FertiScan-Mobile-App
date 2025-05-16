@@ -29,25 +29,24 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Future<void> _loadSessions() async {
     final storedSessions = _storage.read<List>('fertilizerSessions') ?? [];
     setState(() {
-      _sessions =
-          storedSessions
-              .map(
-                (e) => FertilizerSession.fromMap(Map<String, dynamic>.from(e)),
-              )
-              .toList();
+      _sessions = storedSessions
+          .map(
+            (e) => FertilizerSession.fromMap(Map<String, dynamic>.from(e)),
+          )
+          .toList();
     });
   }
 
   String _getUreaRecommendation(String swapValue) {
     switch (swapValue.toLowerCase()) {
       case 'swap1':
-        return 'Apply 50-60 kg/ha';
+        return 'history_screen.swap1'.tr;
       case 'swap2':
-        return 'Apply 40-50 kg/ha';
+        return 'history_screen.swap2'.tr;
       case 'swap3':
-        return 'No need to apply. 0 kg/ha';
+        return 'history_screen.swap3'.tr;
       case 'swap4':
-        return 'No need to apply. 0 kg/ha';
+        return 'history_screen.swap4'.tr;
       default:
         return 'N/A';
     }
@@ -81,7 +80,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   Future<void> _deleteSessions(List<int> indices) async {
-    // Sort in descending order to avoid index issues
     indices.sort((a, b) => b.compareTo(a));
     final updatedSessions = List<FertilizerSession>.from(_sessions);
 
@@ -95,28 +93,28 @@ class _HistoryScreenState extends State<HistoryScreen> {
       'fertilizerSessions',
       updatedSessions.map((e) => e.toMap()).toList(),
     );
-    await _loadSessions(); // Refresh the list
+    await _loadSessions();
   }
 
   void _deleteSelected() async {
-    final shouldDelete =
-        await Get.dialog<bool>(
+    final shouldDelete = await Get.dialog<bool>(
           AlertDialog(
-            title: const Text('Delete Recommendations'),
+            title: Text('history_screen.delete_selected_title'.tr),
             content: Text(
-              'Delete ${_selectedIndices.length} selected recommendation(s)?',
+              'history_screen.delete_selected_content'
+                  .trParams({'count': _selectedIndices.length.toString()}),
               style: GoogleFonts.montserrat(),
             ),
             actions: [
               TextButton(
                 onPressed: () => Get.back(result: false),
-                child: const Text('Cancel'),
+                child: Text('common.cancel'.tr),
               ),
               TextButton(
                 onPressed: () => Get.back(result: true),
-                child: const Text(
-                  'Delete',
-                  style: TextStyle(color: Colors.red),
+                child: Text(
+                  'common.delete'.tr,
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
             ],
@@ -134,24 +132,23 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   void _deleteSingleItem(int index) async {
-    final shouldDelete =
-        await Get.dialog<bool>(
+    final shouldDelete = await Get.dialog<bool>(
           AlertDialog(
-            title: const Text('Delete Recommendation'),
+            title: Text('history_screen.delete_single_title'.tr),
             content: Text(
-              'Delete this recommendation?',
+              'history_screen.delete_single_content'.tr,
               style: GoogleFonts.montserrat(),
             ),
             actions: [
               TextButton(
                 onPressed: () => Get.back(result: false),
-                child: const Text('Cancel'),
+                child: Text('common.cancel'.tr),
               ),
               TextButton(
                 onPressed: () => Get.back(result: true),
-                child: const Text(
-                  'Delete',
-                  style: TextStyle(color: Colors.red),
+                child: Text(
+                  'common.delete'.tr,
+                  style: const TextStyle(color: Colors.red),
                 ),
               ),
             ],
@@ -169,30 +166,30 @@ class _HistoryScreenState extends State<HistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:
-            _isSelecting
-                ? Text(
-                  '${_selectedIndices.length} Selected',
-                  style: GoogleFonts.montserrat(
-                    color: kGreenColor1,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
-                )
-                : Text(
-                  'Recommendation History',
-                  style: GoogleFonts.montserrat(
-                    color: kGreenColor1,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
+        title: _isSelecting
+            ? Text(
+                'history_screen.selected_count'
+                    .trParams({'count': _selectedIndices.length.toString()}),
+                style: GoogleFonts.montserrat(
+                  color: kGreenColor1,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
                 ),
+              )
+            : Text(
+                'history_screen.title'.tr,
+                style: GoogleFonts.montserrat(
+                  color: kGreenColor1,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
         actions: [
           if (_isSelecting)
             IconButton(
               icon: const Icon(Icons.delete, color: Colors.red),
               onPressed: _deleteSelected,
-              tooltip: 'Delete Selected',
+              tooltip: 'history_screen.tooltip_delete_selected'.tr,
             ),
           if (_isSelecting)
             IconButton(
@@ -203,108 +200,99 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   _isSelecting = false;
                 });
               },
-              tooltip: 'Cancel Selection',
+              tooltip: 'history_screen.tooltip_cancel_selection'.tr,
             ),
         ],
       ),
-      body:
-          _sessions.isEmpty
-              ? Center(
-                child: Text(
-                  'No history available',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 16,
-                    color: kGreyColor2,
-                  ),
+      body: _sessions.isEmpty
+          ? Center(
+              child: Text(
+                'history_screen.no_history'.tr,
+                style: GoogleFonts.montserrat(
+                  fontSize: 16,
+                  color: kGreyColor2,
                 ),
-              )
-              : ListView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: _sessions.length,
-                itemBuilder: (context, index) {
-                  final session = _sessions[index];
-                  final urea = _getUreaRecommendation(session.averageResult);
-                  final date = DateFormat(
-                    'MMM dd, yyyy - hh:mm a',
-                  ).format(session.date);
-                  final color = _getSwapColor(session.averageResult);
-                  final isSelected = _selectedIndices.contains(index);
+              ),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: _sessions.length,
+              itemBuilder: (context, index) {
+                final session = _sessions[index];
+                final urea = _getUreaRecommendation(session.averageResult);
+                final date = DateFormat('MMM dd, yyyy - hh:mm a')
+                    .format(session.date);
+                final color = _getSwapColor(session.averageResult);
+                final isSelected = _selectedIndices.contains(index);
 
-                  return Dismissible(
-                    key: Key(session.date.toIso8601String()),
-                    background: Container(
-                      color: Colors.red,
-                      alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.only(right: 20),
-                      child: const Icon(Icons.delete, color: Colors.white),
-                    ),
-                    direction: DismissDirection.endToStart,
-                    confirmDismiss: (direction) async {
-                      if (!_isSelecting) {
-                        _deleteSingleItem(index);
-                        return false;
-                      }
+                return Dismissible(
+                  key: Key(session.date.toIso8601String()),
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 20),
+                    child: const Icon(Icons.delete, color: Colors.white),
+                  ),
+                  direction: DismissDirection.endToStart,
+                  confirmDismiss: (direction) async {
+                    if (!_isSelecting) {
+                      _deleteSingleItem(index);
                       return false;
+                    }
+                    return false;
+                  },
+                  child: InkWell(
+                    onLongPress: () => _toggleSelection(index),
+                    onTap: () {
+                      if (_isSelecting) {
+                        _toggleSelection(index);
+                      } else {
+                        Get.to(
+                          () => RecommendationScreen(
+                            averageResult: session.averageResult,
+                            individualResults: session.individualResults,
+                          ),
+                        );
+                      }
                     },
-                    child: InkWell(
-                      onLongPress: () => _toggleSelection(index),
-                      onTap: () {
-                        if (_isSelecting) {
-                          _toggleSelection(index);
-                        } else {
-                          Get.to(
-                            () => RecommendationScreen(
-                              averageResult: session.averageResult,
-                              individualResults: session.individualResults,
-                            ),
-                          );
-                        }
-                      },
-                      child: Card(
-                        margin: const EdgeInsets.only(bottom: 16),
-                        elevation: 2,
-                        color: isSelected ? Colors.grey[200] : null,
-                        child: ListTile(
-                          leading: Container(
-                            width: 24,
-                            height: 24,
-                            decoration: BoxDecoration(
-                              color: color,
-                              shape: BoxShape.circle,
-                              border:
-                                  isSelected
-                                      ? Border.all(color: Colors.blue, width: 2)
-                                      : null,
-                            ),
-                            child:
-                                isSelected
-                                    ? const Icon(
-                                      Icons.check,
-                                      size: 16,
-                                      color: Colors.white,
-                                    )
-                                    : null,
+                    child: Card(
+                      margin: const EdgeInsets.only(bottom: 16),
+                      elevation: 2,
+                      color: isSelected ? Colors.grey[200] : null,
+                      child: ListTile(
+                        leading: Container(
+                          width: 24,
+                          height: 24,
+                          decoration: BoxDecoration(
+                            color: color,
+                            shape: BoxShape.circle,
+                            border: isSelected
+                                ? Border.all(color: Colors.blue, width: 2)
+                                : null,
                           ),
-                          title: Text(
-                            'Needed Urea amount: $urea',
-                            style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          subtitle: Text(
-                            date,
-                            style: GoogleFonts.montserrat(color: kGreyColor2),
-                          ),
-                          trailing:
-                              _isSelecting
-                                  ? null
-                                  : const Icon(Icons.chevron_right),
+                          child: isSelected
+                              ? const Icon(Icons.check,
+                                  size: 16, color: Colors.white)
+                              : null,
                         ),
+                        title: Text(
+                          'history_screen.urea_needed'.trParams({'urea': urea}),
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        subtitle: Text(
+                          date,
+                          style: GoogleFonts.montserrat(color: kGreyColor2),
+                        ),
+                        trailing:
+                            _isSelecting ? null : const Icon(Icons.chevron_right),
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
+            ),
     );
   }
 }
