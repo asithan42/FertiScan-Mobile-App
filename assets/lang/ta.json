@@ -47,7 +47,8 @@
         "change_lang": "Change Language",
         "change_name": "உங்கள் பெயரை மாற்றவும்",
         "user_guide": "பயன்பாட்டிற்கான வழிகாட்டி",
-         "recommendation_history": "உர பரிந்துரை வரலாறு"
+         "recommendation_history": "உர பரிந்துரை வரலாறு",
+          "fertilizer_calculator": "Fertilizer Calculator"
       },
       "user_guide_screen": {
           "instruction_title": "Instructions for taking rice leaf image",
@@ -62,7 +63,7 @@
         },
         "capture_widget": {
           "start_button": "Start Capture",
-          "capture_next_button": "Capture Next (@count/5)",
+          "capture_next_button": "Capture Next (@count/10)",
           "swap1": "SWAP 1 - Very Deficient (50-60 kg/ha urea)",
           "swap2": "SWAP 2 - Deficient (40-50 kg/ha urea)",
           "swap3": "SWAP 3 - Adequate (30-40 kg/ha urea)",
@@ -139,6 +140,14 @@
   "common": {
     "cancel": "Cancel",
     "delete": "Delete"
+  },
+  "calculation_screen": {
+    "title": "Fertilizer Calculator",
+    "field_size": "Field Size (in hectares)",
+    "fertilizer_per_hectare": "Fertilizer Needed per Hectare (kg/ha)",
+    "calculate_button": "Calculate Total Fertilizer",
+    "total_fertilizer_title": "Total Fertilizer Required",
+    "error_invalid_input": "Please enter valid numbers."
   }
 }
 

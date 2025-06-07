@@ -35,7 +35,7 @@ class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
                 _sessionResults.add(result);
               });
 
-              if (_photosTaken == 5) {
+              if (_photosTaken == 2) {
                 _processCompleteSession();
               }
             }
@@ -78,7 +78,7 @@ class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
     _storage.write('fertilizerSessions', updatedSessions);
     widget.onHistoryUpdated();
 
-    Get.offAll(() => RecommendationScreen(
+    Get.off(() => RecommendationScreen(
           averageResult: average,
           individualResults: _sessionResults,
         ));
