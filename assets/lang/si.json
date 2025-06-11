@@ -133,8 +133,19 @@
   "common": {
     "cancel": "අවලංගු කරන්න",
     "delete": "මකන්න"
+  },
+  
+  "calculation_screen": {
+    "title": "පෝෂක ගණනය කිරීම",
+    "field_size": "ක්ෂේත්‍ර ප්‍රමාණය (හෙක්ටයාර වලින්)",
+    "fertilizer_per_hectare": "හෙක්ටයාරයකට අවශ්‍ය පෝෂක ප්‍රමාණය (කි.ග්‍රෑ.)",
+    "calculate_button": "මුළු පෝෂකය ගණනය කරන්න",
+    "total_fertilizer_title": "අවශ්‍ය මුළු පෝෂක ප්‍රමාණය",
+    "error_invalid_input": "කරුණාකර නිවැරදි සංඛ්‍යා ඇතුළත් කරන්න"
   }
-}
+  }
+
+
 
     
     

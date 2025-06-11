@@ -1,4 +1,5 @@
 import 'package:fertiscanapp/models/fertilizer_session.dart';
+import 'package:fertiscanapp/screens/CalculationScreen.dart';
 import 'package:fertiscanapp/screens/history_screen.dart';
 import 'package:fertiscanapp/screens/photo_take_instruction.dart';
 import 'package:fertiscanapp/widgets/name_required_message_box.dart';
@@ -174,6 +175,24 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
                 ),
               ),
             ),
+
+            const SizedBox(height: 20),
+            // Add new history button
+            TextButton.icon(
+              onPressed: () {
+                Get.to(() => CalculationScreen());
+                widget.onClose?.call();
+              },
+              icon: const Icon(Icons.calculate, color: kBlackColor),
+              label: Text(
+                'hamburger_menu.fertilizer_calculator'.tr,
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w600,
+                  color: kGreenColor1,
+                ),
+              ),
+            ),
+
             const SizedBox(height: 10),
             Text(
               _appVersion ?? 'Loading...',
