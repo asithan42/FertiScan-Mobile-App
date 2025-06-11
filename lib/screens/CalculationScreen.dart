@@ -58,9 +58,9 @@ class _CalculationScreenState extends State<CalculationScreen>
         title: Text(
           'calculation_screen.title'.tr,
           style: GoogleFonts.montserrat(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 17),
         ),
         backgroundColor: Colors.green[700],
         centerTitle: true,
@@ -85,6 +85,7 @@ class _CalculationScreenState extends State<CalculationScreen>
                           const TextInputType.numberWithOptions(decimal: true),
                       decoration: InputDecoration(
                         labelText: 'calculation_screen.field_size'.tr,
+                        hintStyle: GoogleFonts.montserrat(fontSize: 12),
                         prefixIcon: const Icon(FontAwesomeIcons.tractor),
                         border: const OutlineInputBorder(),
                       ),
@@ -97,6 +98,7 @@ class _CalculationScreenState extends State<CalculationScreen>
                       decoration: InputDecoration(
                         labelText:
                             'calculation_screen.fertilizer_per_hectare'.tr,
+                        hintStyle: GoogleFonts.montserrat(fontSize: 4),
                         prefixIcon: const Icon(FontAwesomeIcons.seedling),
                         border: const OutlineInputBorder(),
                       ),
@@ -107,10 +109,10 @@ class _CalculationScreenState extends State<CalculationScreen>
                       child: ElevatedButton.icon(
                         onPressed: _calculate,
                         icon: const Icon(Icons.calculate),
-                        label:
-                            Text('calculation_screen.calculate_button'.tr),
+                        label: Text('calculation_screen.calculate_button'.tr),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green[700],
+                          foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           textStyle: GoogleFonts.montserrat(
                             fontSize: 16,

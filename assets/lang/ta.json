@@ -59,7 +59,8 @@
           "done_button": "Done"
         },
         "home_screen": {
-          "instruction_text": "Check 05 randomly selected rice plants per field to get\nfertilizer recommendation"
+          "instruction_text": "Check 10 randomly selected rice plants per field to get\nfertilizer recommendation",
+    "guide_button": "Photo Taken Guide"
         },
         "capture_widget": {
           "start_button": "Start Capture",

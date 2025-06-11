@@ -20,7 +20,7 @@ class ScanRiceLeafScreen extends StatelessWidget {
           'scan_screen.title'.tr,
           style: GoogleFonts.montserrat(
             textStyle: const TextStyle(
-              fontSize: 20,
+              fontSize: 15,
               color: kGreenColor1,
               fontWeight: FontWeight.w600,
             ),

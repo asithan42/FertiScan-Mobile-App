@@ -1,3 +1,4 @@
+import 'package:fertiscanapp/screens/photo_take_instruction.dart';
 import 'package:fertiscanapp/util/capture_progress.dart';
 import 'package:fertiscanapp/util/greeting_widget.dart';
 import 'package:fertiscanapp/widgets/hamburger_menu.dart';
@@ -97,7 +98,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     ).animate().fadeIn(delay: 500.ms),
                   ),
 
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 10),
+                  Center(
+                    child: TextButton(
+                      onPressed: () {
+                        Get.to(PhotoTakeInstruction());
+                      },
+                      child: Text(
+                        'home_screen.guide_button'.tr,
+                        style: GoogleFonts.montserrat(
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.green[700]!,
+                          decorationThickness: 2,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.green[700],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // App logo
+                  Center(
+                    child: Image.asset(
+                      'assets/images/app_logo.png',
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ],
               ),
             ),
