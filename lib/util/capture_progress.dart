@@ -35,7 +35,7 @@ class _CaptureProgressWidgetState extends State<CaptureProgressWidget> {
                 _sessionResults.add(result);
               });
 
-              if (_photosTaken == 10) {
+              if (_photosTaken == 2) {
                 _processCompleteSession();
               }
             }
