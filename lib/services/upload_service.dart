@@ -7,7 +7,7 @@ class UploadService {
 
   Future<String?> uploadLeafImage(File imageFile) async {
     const String url =
-        'http://192.168.158.197:5000/upload-leaf'; // Change if needed
+        'http://192.168.8.189:5000/upload-leaf'; // Change if needed
 
     try {
       String fileName = imageFile.path.split('/').last;

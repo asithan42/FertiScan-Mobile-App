@@ -54,10 +54,13 @@
     "instruction_2": "Take a clear photo with the leaf fully visible.",
     "instruction_3": "Use natural light and avoid shadows or direct flash.",
     "instruction_4": "Capture the image in good lighting, preferably outdoors.",
+    "instruction_5": "When taking an image, always focus on the center of the rice leaf to get accurate results.",
+    "instruction_6": "After taking the image, crop it to focus only on the rice leaf.",
     "done_button": "Done"
   },
   "home_screen": {
-    "instruction_text": "Check 05 randomly selected rice plants per field to get\nfertilizer recommendation"
+    "instruction_text": "Check 10 randomly selected rice plants per field to get\nfertilizer recommendation",
+    "guide_button": "Photo Taken Guide"
   },
   "capture_widget": {
     "start_button": "Start Capture",

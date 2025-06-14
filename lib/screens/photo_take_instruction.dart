@@ -22,82 +22,92 @@ class _PhotoTakeInstructionState extends State<PhotoTakeInstruction> {
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(24.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        'user_guide_screen.instruction_title'.tr,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'user_guide_screen.instruction_title'.tr,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.montserrat(
+                            textStyle: const TextStyle(
+                              color: kGreenColor1,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.asset(
+                            'assets/images/lcc_chart_screen_image.png',
+                            height: 180,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            InstructionPoint(
+                              icon: "📄",
+                              textKey: "user_guide_screen.instruction_1",
+                            ),
+                            InstructionPoint(
+                              icon: "📷",
+                              textKey: "user_guide_screen.instruction_2",
+                            ),
+                            InstructionPoint(
+                              icon: "🌟",
+                              textKey: "user_guide_screen.instruction_3",
+                            ),
+                            InstructionPoint(
+                              icon: "✨",
+                              textKey: "user_guide_screen.instruction_4",
+                            ),
+                             InstructionPoint(
+                              icon: "📱",
+                              textKey: "user_guide_screen.instruction_5",
+                            ),
+                            InstructionPoint(
+                              icon: "🔄",
+                              textKey: "user_guide_screen.instruction_6",
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.to(() => const HomeScreen());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kGreenColor2,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 40,
+                          vertical: 14,
+                        ),
+                      ),
+                      child: Text(
+                        'user_guide_screen.done_button'.tr,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.montserrat(
                           textStyle: const TextStyle(
-                            color: kGreenColor1,
-                            fontSize: 25,
+                            color: kWhiteColor,
+                            fontSize: 17,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: Image.asset(
-                          'assets/images/lcc_chart_screen_image.png',
-                          height: 180,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(height: 24),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          InstructionPoint(
-                            icon: "📄",
-                            textKey: "user_guide_screen.instruction_1",
-                          ),
-                          InstructionPoint(
-                            icon: "📷",
-                            textKey: "user_guide_screen.instruction_2",
-                          ),
-                          InstructionPoint(
-                            icon: "🌟",
-                            textKey: "user_guide_screen.instruction_3",
-                          ),
-                          InstructionPoint(
-                            icon: "✨",
-                            textKey: "user_guide_screen.instruction_4",
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Get.to(() => const HomeScreen());
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kGreenColor2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 14,
-                      ),
                     ),
-                    child: Text(
-                      'user_guide_screen.done_button'.tr,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.montserrat(
-                        textStyle: const TextStyle(
-                          color: kWhiteColor,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
