@@ -68,6 +68,14 @@ class _PhotoTakeInstructionState extends State<PhotoTakeInstruction> {
                               icon: "✨",
                               textKey: "user_guide_screen.instruction_4",
                             ),
+                             InstructionPoint(
+                              icon: "📱",
+                              textKey: "user_guide_screen.instruction_5",
+                            ),
+                            InstructionPoint(
+                              icon: "🔄",
+                              textKey: "user_guide_screen.instruction_6",
+                            ),
                           ],
                         ),
                       ],
